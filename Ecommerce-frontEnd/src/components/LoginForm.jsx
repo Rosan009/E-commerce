@@ -10,12 +10,41 @@ export const LoginForm = () => {
   const handleInput = (e) =>{
     setInput({...input,[e.target.name]:e.target.value});
   }
+  const handleSubmit=async(e)=>{
+    e.preventDefault(); 
+        try{
+     const response=await fetch("http://localhost:8081/user/login",{
+        method:'post',
+        headers:{
+          "content-type":"application/json"
+        },
+        body:JSON.stringify(input)
+     })
+     const contentType = response.headers.get('Content-Type');
+      const isJson = contentType && contentType.includes('application/json');
+     if(response.ok){
+      const data = isJson ? await response.json() : null;     
+       console.log('User registered successfully!', data);
+        alert('User registered successfully!');
+        navigate('/home');
+     }
+     else {
+      const error = await response.json();
+      console.error('Error:', error);
+      alert('Error during registration: ' + error.message);
+    }
+  } catch (error) {
+    console.error('Network error:', error);
+    alert('Network error: Unable to reach the server.');
+  }
+};
+
   return (
     <>
       <h1>Login Form</h1>
-      <form >
-        <label htmlFor="userName">User Name</label>
-        <input type="text" 
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="userName">Email</label>
+        <input type="email" 
         name="userName" id="userName" 
         onChange={handleInput}
         required
