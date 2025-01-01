@@ -8,8 +8,8 @@ export const SignIn = () => {
     lastName: '',
     email: '',
     password: '',
-    confirmPassword: '',
   });
+  const[cpass,setcpass]=useState({confirmPassword: ''})
   const navigate = useNavigate();
 
   const handleUser = (e) => {
@@ -19,7 +19,6 @@ export const SignIn = () => {
       [name]: value,
     }));
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault(); // Fixed typo
 
@@ -36,6 +35,7 @@ export const SignIn = () => {
         },
         body: JSON.stringify(user),
       });
+      
       const contentType = response.headers.get('Content-Type');
       const isJson = contentType && contentType.includes('application/json');
   
