@@ -1,7 +1,7 @@
-package com.example.ecommerce_backEnd.jsonToken;
+package com.example.ecommerce_backEnd.config;
 
-import com.example.security.service.ServiceConfig;
-import com.example.security.service.TokenService;
+import com.example.ecommerce_backEnd.service.TokenService;
+import com.example.ecommerce_backEnd.service.UserConfig;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,7 +22,7 @@ public class JwtFilter extends OncePerRequestFilter
     @Autowired
     private TokenService tokenService;
     @Autowired
-    private ServiceConfig serviceConfig;
+    private UserConfig serviceConfig;
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException
     {
