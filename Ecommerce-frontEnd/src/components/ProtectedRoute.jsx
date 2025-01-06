@@ -1,14 +1,17 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
+import { isTokenExpired } from '../utils/isTokenExpired ';
 
-const ProtectedRoute = ({ children }) => {
+
+const ProtectedRoute = () => {
   const token = localStorage.getItem('token');
-  
-  if (!token) {
-    return <Navigate to="/login" replace />;
+
+  if (!token || isTokenExpired(token)) {
+    localStorage.removeItem('token'); // Clear expired token
+    return <Navigate to="/" replace />;
   }
 
-  return children;
+  return <Outlet />;
 };
 
 export default ProtectedRoute;
