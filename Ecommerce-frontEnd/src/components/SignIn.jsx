@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import '../css/Style.css';
 
@@ -60,9 +60,14 @@ export const SignIn = () => {
       ? { border: '1px solid red' }
       : {};
 
+const passwordFieldStyle = user.password && user.confirmPassword && user.password !== user.confirmPassword ? { border: '1px solid red' } : {};
+const confirmPasswordFieldStyle = user.password && user.confirmPassword && user.password !== user.confirmPassword ? { border: '1px solid red' } : {};
+
+
   return (
     <>
       <h1>Sign In</h1>
+
       <form onSubmit={handleSubmit}>
         <label htmlFor="firstName">First Name</label>
         <input
