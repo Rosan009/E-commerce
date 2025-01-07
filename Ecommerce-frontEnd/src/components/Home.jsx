@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import{Nav} from '../components/nav/Nav'
+import { ProductNav } from './nav/ProductNav';
 export const Home = () => {
   const navigate = useNavigate();
 
@@ -11,8 +12,8 @@ export const Home = () => {
   
   return (
     <div>
-      <h1>Welcome to the Home Page</h1>
-      <button onClick={handleLogout}>Logout</button>
+     <Nav/>
+     <ProductNav/>
     </div>
   );
 };
