@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import{Nav} from '../components/nav/Nav'
 import { ProductNav } from './nav/ProductNav';
+import { Slider } from './slider/Slider';
 export const Home = () => {
   const navigate = useNavigate();
 
@@ -14,6 +15,7 @@ export const Home = () => {
     <div>
      <Nav/>
      <ProductNav/>
+     <Slider/>
     </div>
   );
 };
