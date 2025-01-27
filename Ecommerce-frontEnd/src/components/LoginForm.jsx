@@ -27,9 +27,9 @@ export const LoginForm = () => {
 
       if (response.ok) {
         const data = isJson ? await response.json() : null;
-        const token = data?.token || null; // Extract token if sent as JSON
+        const token = data?.token || null; 
         alert('Login successful!');
-        localStorage.setItem('token', token); // Store token
+        localStorage.setItem('token', token); 
         navigate('/home');
       } else {
         const error = isJson ? await response.json() : { message: 'Login failed' };

@@ -9,7 +9,7 @@ import { SignIn } from './components/SignIn';
 
 
 function App() {
-  useTokenExpiryHandler(); // Automatically handle expired tokens
+  useTokenExpiryHandler(); 
 
   return (
 

@@ -20,7 +20,7 @@ export const SignIn = () => {
     }));
   };
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Fixed typo
+    e.preventDefault(); 
 
     if (user.password !== user.confirmPassword) {
       alert('Passwords do not match!');

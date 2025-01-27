@@ -9,8 +9,7 @@ const useTokenExpiryHandler = () => {
     const interval = setInterval(() => {
       const token = localStorage.getItem('token');
       if (isTokenExpired(token)) {
-        localStorage.removeItem('token');
-        navigate('/'); 
+        localStorage.removeItem('token'); 
         clearInterval(interval);
       }
     }, 10000); // Check every 10 seconds
