@@ -24,16 +24,24 @@ public class JwtFilter extends OncePerRequestFilter
     @Autowired
     private UserConfig serviceConfig;
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException
-    {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+        String path = request.getServletPath();
+
+        // Skip JWT validation for specific endpoints
+        if (path.equals("/user/login") || path.equals("/user/sign")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         String authorizationHeader = request.getHeader("Authorization");
         String jwtToken = null;
         String username = null;
-        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer "))
-        {
+
+        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             jwtToken = authorizationHeader.substring(7);
             username = tokenService.extendUserName(jwtToken);
         }
+
         try {
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
                 UserDetails userDetails = serviceConfig.loadUserByUsername(username);
@@ -50,4 +58,5 @@ public class JwtFilter extends OncePerRequestFilter
 
         filterChain.doFilter(request, response);
     }
+
 }
