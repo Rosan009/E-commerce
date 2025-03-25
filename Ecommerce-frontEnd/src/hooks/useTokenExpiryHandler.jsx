@@ -12,7 +12,7 @@ const useTokenExpiryHandler = () => {
         localStorage.removeItem('token'); 
         clearInterval(interval);
       }
-    }, 10000); // Check every 10 seconds
+    }, 10000);
 
     return () => clearInterval(interval);
   }, [navigate]);
